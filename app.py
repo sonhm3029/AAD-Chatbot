@@ -8,6 +8,7 @@ from api import initRoute
 load_dotenv()
 
 app = Flask(__name__)
+app.config['MAX_CONTENT_LENGTH'] = 200 * 1024 * 1024
 CORS(app)
 
 initRoute(app)
