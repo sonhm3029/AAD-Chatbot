@@ -1,11 +1,13 @@
-from flask import request, jsonify
+from flask import request, jsonify, Blueprint
 
-def regsiterRoute(app):
-    @app.route("/ir-bot", methods=["POST"])
-    def chat():
-        """API for handle chat"""
-        name = request.get_json()["name"]
+irbot_bp = Blueprint("irbot", __name__)
+
+@irbot_bp.route("/chat", methods=["POST"])
+def chat():
+    """API for handle chat"""
+    name = request.get_json()["name"]
+    
+    return jsonify({
+        "message": f"Hello {name}"
+    })
         
-        return jsonify({
-            "message": f"Hello {name}"
-        })
